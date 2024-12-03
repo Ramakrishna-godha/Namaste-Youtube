@@ -60,12 +60,16 @@ const Header = () => {
     );
   };
 
+  const handleSuggestionClick = (suggestion) => {
+    // Navigate to search results page
+    setSearchQuery(suggestion); // Set the search query as the clicked suggestion
+  };
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
   };
   return (
-    <div className="grid grid-flow-col p-5 m-2 shadow-lg">
-      <div className="flex col-span-1">
+    <div className="grid grid-cols-3 items-center p-5 m-2 shadow-lg gap-4">
+      <div className="flex items-center col-span-1 space-x-2">
         <img
           onClick={() => toggleMenuHandler()}
           className="h-8 cursor-pointer "
@@ -73,33 +77,38 @@ const Header = () => {
           alt="menu"
         />
         <img
-          className="h-8 ml-2"
+          className="h-8 "
           src={YOUTUBE_LOGO}
           alt="YouTube Logo"
         />
       </div>
 
-      <div className="col-span-10  px-20">
-        <div>
+      <div className="col-span-1 flex justify-center items-center relative">
+        <div className="flex w-full max-w-md">
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={(e) => setShowSuggestions(true)}
             onBlur={() => setShowSuggestions(false)}
-            className="w-1/2 px-5 border border-gray-500 rounded-l-full p-2 bg-gray-100"
+            className="w-full px-4 py-2 border border-gray-500 rounded-l-full bg-gray-100"
           />
-          <button className=" border border-gray-400   px-3 py-2 rounded-r-full ">
+          <button className=" px-4 py-2 border border-gray-400 bg-white rounded-r-full ">
             🔍
           </button>
         </div>
         {showSuggestions && (
-          <div className="fixed bg-white w-[25rem]   px-3 py-2 shadow-lg rounded-lg border border-gray-100 ">
+          <div
+            className="absolute w-96 top-full mt-2 bg-white  max-w-md px-3 py-2 shadow-lg rounded-lg border border-gray-100 lg:w-full
+      sm:w-[22rem] 
+      md:w-[30rem] "
+          >
             <ul>
-              {suggestions.map((s) => (
+              {suggestions.map((s, index) => (
                 <li
-                  key={s}
-                  className="py-1 shadow-sm hover:bg-gray-100"
+                  key={index}
+                  className="py-1 shadow-sm hover:bg-gray-100 cursor-pointer"
+                  onClick={() => handleSuggestionClick(s)}
                 >
                   🔍{s}
                 </li>
@@ -108,7 +117,7 @@ const Header = () => {
           </div>
         )}
       </div>
-      <div className="col-span-1">
+      <div className="flex justify-end items-center col-span-1">
         <img
           className="h-8"
           src={USER_ICON}

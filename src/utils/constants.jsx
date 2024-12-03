@@ -7,10 +7,10 @@ export const YOUTUBE_LOGO =
 export const USER_ICON =
   "https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small_2x/user-profile-icon-free-vector.jpg";
 
-const GOOGLE_API_KEY = "AIzaSyBZ3yONCvpY6uQq5Lte0VwIb0BBMoPFc1A";
+export const GOOGLE_API_KEY = "AIzaSyBZ3yONCvpY6uQq5Lte0VwIb0BBMoPFc1A";
 
 export const YOUTUBE_VIDEOS_API =
-  "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=" +
+  "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=10&regionCode=IN&key=" +
   GOOGLE_API_KEY;
 
 export const YOUTUBE_SEARCH_API =
